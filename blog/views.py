@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import *
 
 def index(request):
-    return render(request, 'blog/index.html')
+    queryset = Post.objects.all()
+    context = {
+        'queryset': queryset
+    }
+    return render(request, 'index.html', context)
 
 def blog(request):
+    #blog = get_object_or_404(Post, id=blog_id)
     return render(request, 'blog.html')
 
 
